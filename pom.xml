@@ -40,6 +40,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.18</version>
     </dependency>
 
     <dependency>
@@ -89,7 +90,7 @@
   </dependencies>
 
   <build>
-    <finalName>zsxt</finalName>
+    <finalName>miaosha</finalName>
     <plugins>
       <plugin>
         <groupId>org.mybatis.generator</groupId>
@@ -100,7 +101,14 @@
           <overwrite>true</overwrite>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+
     </plugins>
   </build>
 
 </project>
+

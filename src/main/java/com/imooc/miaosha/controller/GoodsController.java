@@ -41,8 +41,9 @@ public class GoodsController {
     public String detail(Model model,MiaoshaUser user,
                          @PathVariable("goodsId")long goodsId) {
         model.addAttribute("user", user);
-
+        System.out.println("goodsID = " + goodsId);
         GoodsVo goods = goodsService.getGoodsVoByGoodsId(goodsId);
+        System.out.println(goods);
         model.addAttribute("goods", goods);
 
         long startAt = goods.getStartDate().getTime();
