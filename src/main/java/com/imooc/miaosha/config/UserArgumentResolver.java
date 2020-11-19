@@ -24,6 +24,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
+        // 一个api接口，多个参数，将会多次调用此方法匹配是不是你需要的参数类型
         Class<?> clazz = parameter.getParameterType();
         return clazz==MiaoshaUser.class;
     }

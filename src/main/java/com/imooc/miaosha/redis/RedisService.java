@@ -8,7 +8,6 @@ import com.alibaba.fastjson.JSON;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-// 通过Service提供redis服务
 @Service
 public class RedisService {
 
@@ -38,9 +37,6 @@ public class RedisService {
     public <T> boolean set(KeyPrefix prefix, String key,  T value) {
         Jedis jedis = null;
         try {
-//            System.out.println("--------------------------------");
-//            System.out.println("jedisPool = \n" + jedisPool);
-//            System.out.println("--------------------------------");
             jedis =  jedisPool.getResource();
             String str = beanToString(value);
             if(str == null || str.length() <= 0) {
@@ -70,6 +66,22 @@ public class RedisService {
             //生成真正的key
             String realKey  = prefix.getPrefix() + key;
             return  jedis.exists(realKey);
+        }finally {
+            returnToPool(jedis);
+        }
+    }
+
+    /**
+     * 删除
+     * */
+    public boolean delete(KeyPrefix prefix, String key) {
+        Jedis jedis = null;
+        try {
+            jedis =  jedisPool.getResource();
+            //生成真正的key
+            String realKey  = prefix.getPrefix() + key;
+            long ret =  jedis.del(key);
+            return ret > 0;
         }finally {
             returnToPool(jedis);
         }
@@ -142,5 +154,4 @@ public class RedisService {
             jedis.close();
         }
     }
-
 }
