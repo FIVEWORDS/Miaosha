@@ -77,6 +77,7 @@ public class MiaoshaUserService {
 
 
     public String login(HttpServletResponse response, LoginVo loginVo) {
+        System.out.println("login:MiaoshaUserService:login()");
         if(loginVo == null) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }

@@ -15,9 +15,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class WebConfig  extends WebMvcConfigurerAdapter{
 
+    //配置用户参数
     @Autowired
     UserArgumentResolver userArgumentResolver;
 
+    //配置拦截器
     @Autowired
     LoginInterceptor loginInterceptor;
 
@@ -31,6 +33,6 @@ public class WebConfig  extends WebMvcConfigurerAdapter{
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/login/to_login");
+//                .excludePathP atterns("/login/do_login");
     }
-
 }

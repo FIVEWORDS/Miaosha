@@ -38,7 +38,7 @@ public class LoginController {
         log.info(loginVo.toString());
         //登录
         String token = userService.login(response, loginVo);
-//        System.out.println("登录成功");
+        System.out.println("登录成功");
         return Result.success(token);
     }
 }

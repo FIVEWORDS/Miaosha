@@ -38,6 +38,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             return null;
         }
         for(Cookie cookie : cookies) {
+            System.out.println(cookie.getName());
             if(cookie.getName().equals(cookiName)) {
                 return cookie.getValue();
             }
