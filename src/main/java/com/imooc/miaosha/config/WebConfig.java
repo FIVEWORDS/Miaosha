@@ -2,7 +2,8 @@ package com.imooc.miaosha.config;
 
 import java.util.List;
 
-import com.imooc.miaosha.config.interceptor.LoginInterceptor;
+import com.imooc.miaosha.access.AccessInterceptor;
+//import com.imooc.miaosha.config.interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -20,8 +21,10 @@ public class WebConfig  extends WebMvcConfigurerAdapter{
     UserArgumentResolver userArgumentResolver;
 
     //配置拦截器
+//    @Autowired
+//    LoginInterceptor loginInterceptor;
     @Autowired
-    LoginInterceptor loginInterceptor;
+    AccessInterceptor accessInterceptor;
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
@@ -30,9 +33,10 @@ public class WebConfig  extends WebMvcConfigurerAdapter{
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/login/to_login");
+        registry.addInterceptor(accessInterceptor);
+//        registry.addInterceptor(loginInterceptor)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/login/to_login");
 //                .excludePathP atterns("/login/do_login");
     }
 }
